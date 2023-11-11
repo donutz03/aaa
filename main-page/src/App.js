@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+// src/App.js
+import React from 'react';
+import ImageGallery from './components/ImageGallery';
 import './App.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
+import Home from './components/Home';
+import CalorieCalculator from './components/CalorieCalculator';
 
 function App() {
+  const images = [
+    '/images/img1.jpg',
+    '/images/img2.jpg',
+    '/images/img3.jpg',
+    // Add more image URLs as needed
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <ImageGallery images={images} />
     </div>
   );
+
+  // return (
+  //   <Router>
+  //     <div className="App">
+  //       <nav>
+  //         <ul>
+  //           <li>
+  //             <Link to="/">Home</Link>
+  //           </li>
+  //           <li>
+  //             <Link to="/calorie-calculator">Calorie Calculator</Link>
+  //           </li>
+  //         </ul>
+  //       </nav>
+  //     <Routes>
+  //     <Route path="/" exact component={Home} />
+  //       <Route path="/calorie-calculator" component={CalorieCalculator} />
+  //     </Routes>
+        
+  //     </div>
+  //   </Router>
+  // );
+
 }
 
 export default App;
