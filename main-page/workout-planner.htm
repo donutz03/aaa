@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout planner</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <h1>Workout planner</h1>
+
+    <form id="exerciseForm">
+
+        <label for="type">Type:</label>
+        <select id="type" name="type">
+            <option value="">Select Type</option>
+            <option value="cardio">Cardio</option>
+            <option value="olympic_weightlifting">Olympic Weightlifting</option>
+            <option value="plyometrics">Plyometrics</option>
+            <option value="powerlifting">Powerlifting</option>
+            <option value="strength">Strength</option>
+            <option value="stretching">Stretching</option>
+            <option value="strongman">Strongman</option>  
+        </select>
+
+        <label for="muscle">Muscle:</label>
+        <select id="muscle" name="muscle">
+            <option value="">Select Muscle</option>
+            <option value="abdominals">Abdominals</option>
+            <option value="biceps">Biceps</option>
+            <option value="calves">Calves</option>
+            <option value="chest">Chest</option>
+            <option value="forearms">Forearms</option>
+            <option value="glutes">Glutes</option>
+            <option value="hamstrings">Hamstrings</option>
+            <option value="lats">Lats</option>
+            <option value="lower_back">Lower Back</option>
+            <option value="middle_back">Middle Back</option>
+            <option value="neck">Neck</option>
+            <option value="quadriceps">Quadriceps</option>
+            <option value="traps">Traps</option>
+            <option value="biceps">Biceps</option>
+            <option value="abdominals">Abdominals</option>
+            <option value="triceps">Triceps</option>
+        </select>
+
+        <label for="difficulty">Difficulty:</label>
+        <select id="difficulty" name="difficulty">
+            <option value="">Select Difficulty</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="expert">Expert</option>
+        </select>
+
+        <button type="button" onclick="getExercises()">Get Exercises</button>
+    </form>
+
+    <div id="resultSection">
+        <h2>Today's workout:</h2>
+        <pre id="apiResult"></pre>
+    </div>
+
+    <script>
+        function getExercises() {
+            var params = {
+                type: $('#type').val(),
+                muscle: $('#muscle').val(),
+                difficulty: $('#difficulty').val(),
+                offset: $('#offset').val(),
+            };
+
+            var apiKey = 'Ygnfr5fgdWJvnXyvDGgw0A==TpykOtkdts2go1A9';  // Replace API KEY
+
+            $.ajax({
+                method: 'GET',
+                url: 'https://api.api-ninjas.com/v1/exercises?muscle=' + muscle + '&difficulty=' + difficulty + '&type=' + type,
+                data: params,
+                headers: { 'X-Api-Key': apiKey },
+                contentType: 'application/json',
+                success: function(result) {
+                    console.log(result);
+                    // Handle the API response as needed
+                    var html = '<ul>';
+                    $.each(result.slice(0, 5), function(index, exercise) {
+                        html += '<ul>';
+                        html += '<h2><strong>Exercise:</strong> ' + exercise.name + '</h2>';
+                        html += '<li><strong>Type:</strong> ' + exercise.type + '</li>';
+                        html += '<li><strong>Difficulty:</strong> ' + exercise.difficulty + '</li>';
+                        html += '<li><strong>Equipment:</strong> ' + exercise.equipment + '</li>';
+                        html += '<li><strong>Muscle:</strong> ' + exercise.muscle + '</li>';
+                        html += '<li><strong>Instructions:</strong> ' + exercise.instructions + '</li>';
+                        html += '</ul>';
+                    });
+                    html += '</ul>';
+
+                    // Display the HTML on the webpage
+                    $('#apiResult').html(html);
+                },
+                error: function ajaxError(jqXHR) {
+                    console.error('Error: ', jqXHR.responseText);
+                    // Handle the error as needed
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
