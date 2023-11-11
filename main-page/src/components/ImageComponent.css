@@ -21,7 +21,7 @@
     z-index: 1; 
   }
 
-  .button2 {
+  .workout-planner {
     position: absolute;
     top: 10%;
     left: 20%;
@@ -29,7 +29,7 @@
     z-index: 1; 
   }
   
-  .button3 {
+  .weight-tracker {
     position: absolute;
     top: 90%;
     left: 20%;

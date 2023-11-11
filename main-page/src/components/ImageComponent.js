@@ -7,12 +7,24 @@ import './ImageComponent.css';
 
 const ImageComponent = ({ src, altText, currentImageIndex }) => {
   const [showCalculator, setShowCalculator] = useState(false);
+  const [showWorkout, setShowWorkout] = useState(false); 
+  const [showWeight, setShowWeight] = useState(false);
   const navigate = useNavigate();
 
   const showCalorieCalculator = () => {
     setShowCalculator(true);
     navigate('/calorie-calculator'); // Navigate to the "/calorie-calculator" route
   };
+
+  const showWorkoutPlanner = () => {
+    setShowWorkout(true);
+    navigate('/workout-planner'); // Navigate to the "/workout-planner" route
+  }
+
+  const showWeightTracker = () => {
+    setShowWeight(true);
+    navigate('/weight-tracker'); // Navigate to the "/weight-tracker" route
+  }
 
   const showButton = () => {
     switch (currentImageIndex) {
@@ -24,14 +36,14 @@ const ImageComponent = ({ src, altText, currentImageIndex }) => {
         );
       case 1:
         return (
-          <button className="button2">
-            Button 2
+          <button className="workout-planner" onClick={showWorkoutPlanner}>
+            Workout Planner
           </button>
         );
       case 2:
         return (
-          <button className="button3">
-            Button 3
+          <button className="weight-tracker" onClick={showWeightTracker}>
+            Go to Weight Tracker
           </button>
         );
       default:

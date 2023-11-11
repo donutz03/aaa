@@ -2,6 +2,8 @@ import React from 'react';
 import ImageGallery from './components/ImageGallery';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CalorieCalculator from './components/CalorieCalculator';
+import WorkoutPlanner from './components/WorkoutPlanner';
+import WeightTracker from './components/WeightTracker';
 import './App.css';
  
 
@@ -18,6 +20,8 @@ function App() {
       <Routes>
         <Route path="/" element={<ImageGallery images={images} />} />
         <Route path="/calorie-calculator" element={<CalorieCalculator />} />
+        <Route path="/workout-planner" element={<WorkoutPlanner />} />
+        <Route path="/weight-tracker" element={<WeightTracker />} />
       </Routes>
     </Router>
     // </div>
