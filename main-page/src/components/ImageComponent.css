@@ -1,15 +1,39 @@
-/* src/components/ImageComponent.css */
 .image-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Set the height to 100% of the viewport height */
-    margin: 0; /* Remove margin */
-    overflow: hidden; /* Hide overflow to ensure the image covers the full height */
+    height: 100vh; 
+    margin: 0; 
+    overflow: hidden; 
   }
   
   .centered-image {
-    width: 100%; /* Set the width to 100% */
-    height: auto;
+    width: 100%; 
+    width: auto;
+  }
+    
+
+  .show-calculator-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; 
+  }
+
+  .button2 {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    z-index: 1; 
+  }
+  
+  .button3 {
+    position: absolute;
+    top: 90%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    z-index: 1; 
   }
   

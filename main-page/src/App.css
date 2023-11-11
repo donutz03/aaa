@@ -1,7 +1,5 @@
-/* src/App.css */
 
 body {
-  /* background-color: black; */
   overflow: hidden;
 }
 
@@ -12,13 +10,13 @@ body {
 .images-wrapper {
   display: flex;
   justify-content: space-between;
-  margin: 0; /* Remove margin */
-  padding: 0; /* Remove padding */
+  margin: 0; 
+  padding: 0; 
 }
 
 .images-wrapper img {
-  width: 100vw; /* Set the width to 100% of the viewport width */
-  max-width: none; /* Remove max-width */
+  width: 100vw; 
+  max-width: none; 
   height: auto;
 }
 
