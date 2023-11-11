@@ -16,7 +16,7 @@
     <form id="strengthForm">
         <label for="exercise">Enter your exercise:</label>
         <input type="text" id="exercise" required>
-        <label for="weight">Enter your weight (kg):</label>
+        <label for="weight">Enter the weight of the bar/bodyweight (kg):</label>
         <input type="number" id="weight" required>
         <label for="reps">Enter the number of reps:</label>
         <input type="number" id="reps" required>
@@ -116,7 +116,7 @@
 
             // Create the chart
             myChart = new Chart(ctx, {
-                type: 'line', 
+                type: 'bar', 
                 data: {
                     labels: sortedDates,
                     datasets: Object.keys(chartData).map(exercise => ({
@@ -134,7 +134,7 @@
                         x: {
                             type: 'category',
                             offset: true,
-                            reverse: true
+                            reverse: false
                         },
                         y: {
                             title: {
@@ -152,3 +152,4 @@
 </body>
 
 </html>
+
