@@ -47,7 +47,7 @@ const WorkoutPlanner = () => {
           <option value="powerlifting">Powerlifting</option>
           <option value="strength">Strength</option>
           <option value="stretching">Stretching</option>
-          <option value="strongman">Strongman</option>
+          <option value="strongman">strong className="a"man</option>
         </select>
 
         <label htmlFor="muscle">Muscle:</label>
@@ -95,23 +95,23 @@ const WorkoutPlanner = () => {
           {apiResult.map((exercise, index) => (
             <li className="exercise-item" key={index}>
               <h2>
-                <strong>Exercise:</strong> {exercise.name}
+                <strong className="a">Exercise:</strong> {exercise.name}
               </h2>
               <ul className="exercise-details">
                 <li>
-                  <strong>Type:</strong> {exercise.type}
+                  <strong className="a">Type:</strong> {exercise.type}
                 </li>
                 <li>
-                  <strong>Difficulty:</strong> {exercise.difficulty}
+                  <strong className="a">Difficulty:</strong> {exercise.difficulty}
                 </li>
                 <li>
-                  <strong>Equipment:</strong> {exercise.equipment}
+                  <strong className="a">Equipment:</strong> {exercise.equipment}
                 </li>
                 <li>
-                  <strong>Muscle:</strong> {exercise.muscle}
+                  <strong className="a">Muscle:</strong> {exercise.muscle}
                 </li>
                 <li>
-                  <strong>Instructions:</strong> {exercise.instructions}
+                  <strong className="a">Instructions:</strong> {exercise.instructions}
                 </li>
               </ul>
             </li>
