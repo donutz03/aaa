@@ -18,7 +18,6 @@ const AIPoweredWorkoutPlanner = () => {
       goals,
     };
 
-    // Replace 'YOUR_OPENAI_API_KEY' with your actual OpenAI API key
     const apiKey = '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';
 
     try {
@@ -131,8 +130,9 @@ const AIPoweredWorkoutPlanner = () => {
 
       <div id="resultSection">
         <h2>Today's workout:</h2>
-        <pre id="apiResult">{apiResult}</pre>
+        <pre id="apiResult" style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word'}}>{apiResult}</pre>
       </div>
+
 
       <button
         id="addToCalendarBtn"

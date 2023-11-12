@@ -1,19 +1,15 @@
-/* Header */
-
-
 
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #fff; /* Set your desired background color */
-    color: #333; /* Set your desired text color */
-    /* overflow: auto; */
+    background-color: #fff; 
+    color: #333; 
   }
   
   .h1-workout-planner {
     text-align: center;
     margin-top: 50px;
-    color: #333; /* Set your desired text color */
+    color: #333; 
   }
   
   #exerciseForm {
@@ -28,7 +24,7 @@ body {
     border-bottom: 4px solid #ddd;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
-    background-color: #f2f2f2; /* Set background color */
+    background-color: #f2f2f2;
     border-radius: 10px; 
   }
   
@@ -71,10 +67,10 @@ body {
     color: #4caf50;
   }
   
-  /* Exercise */
+  
   .exercise-item h2 {
-    font-size: 1.2rem; /* Adjust the font size for the title */
-    color: #333; /* Set the title color */
+    font-size: 1.2rem; 
+    color: #333; 
   }
   
   .exercise-details li {
@@ -91,27 +87,27 @@ body {
     max-width: 90%;
     padding: 20px;
     display: flex;
-    flex-wrap: nowrap; /* Ensure items stay in one row */
+    flex-wrap: nowrap; 
     justify-content: space-between;
-    overflow-x: auto; /* Add horizontal scroll if needed */
-    background-color: #f2f2f2; /* Set background color */
-    border-radius: 10px; /* Add border-radius for a rounded look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    overflow-x: auto; 
+    background-color: #f2f2f2; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   }
   
   .exercise-list {
     list-style: none;
     padding: 0;
-    margin-right: 20px; /* Add margin between items */
+    margin-right: 20px; 
     box-sizing: border-box;
   }
   
   .exercise-item {
     margin-bottom: 10px;
-    padding: 20px; /* Increase padding for better spacing */
-    border: 1px solid #ddd; /* Add the border color back */
+    padding: 20px; 
+    border: 1px solid #ddd; 
     border-radius: 8px;
-    background-color: #fff; /* Set the background color to white or any color you prefer */
+    background-color: #fff; 
   }
   
   .exercise-details {
@@ -129,7 +125,6 @@ body {
   }
 
   #addToCalendarBtn {
-    /* Your existing styles for the button */
     box-shadow: inset 0px 0px 19px -1px #91b8b3;
     background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
     background-color: #768d87;
@@ -145,7 +140,6 @@ body {
     margin: 10px;
     text-decoration: none;
     text-shadow: -1px 14px 39px #2b665e;
-    /* Additional styles to center the button */
     bottom: 20px;
     transform: translateX(340%);
   }

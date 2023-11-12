@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Chart from 'chart.js/auto';
-import { Link } from 'react-router-dom'; // Assuming you are using React Router
+import { Link } from 'react-router-dom'; 
 import { useNavigate } from 'react-router-dom';
 
 const WeightTracker = () => {

@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* Add your custom styles here */
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -90,15 +89,12 @@
 
                 exerciseDataArray.push(exerciseData);
 
-                // Save to localStorage
                 saveToLocalStorage(exerciseDataArray);
 
-                // Clear the form fields
                 weightInput.value = '';
                 stepsInput.value = '';
                 waterInput.value = '';
 
-                // Display statistics
                 displayStatistics();
 
                 console.log("Data saved in array:", exerciseDataArray);
@@ -108,7 +104,6 @@
         }
 
         function displayStatisticsOnLoad() {
-            // Display statistics on page load
             displayStatistics();
         }
 

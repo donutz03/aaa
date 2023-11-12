@@ -15,7 +15,7 @@ const WorkoutPlanner = () => {
       difficulty: difficulty,
     };
 
-    const apiKey = 'Ygnfr5fgdWJvnXyvDGgw0A==TpykOtkdts2go1A9'; // Replace API KEY
+    const apiKey = 'Ygnfr5fgdWJvnXyvDGgw0A==TpykOtkdts2go1A9'; 
 
     try {
       const response = await axios.get('https://api.api-ninjas.com/v1/exercises', {
@@ -36,7 +36,7 @@ const WorkoutPlanner = () => {
   function generateGoogleCalendarEventURL() {
     // Retrieve workout details from #apiResult
     var workoutDetails = apiResult.map((exercise, index) => (
-      `<strong>Exercise ${index + 1}:</strong> ${exercise.name}<br>`
+      `<strong>Exercise ${index + 1}:</strong> ${exercise.name}<br>${exercise.type},<br>${exercise.difficulty},<br>${exercise.muscle},<br>${exercise.instructions}<br><br>`
     )).join('');
 
     var event = {

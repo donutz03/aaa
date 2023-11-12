@@ -1,4 +1,4 @@
-// CalorieCalculator.js
+
 import './CalorieCalculator.css';
 import React, { useState } from 'react';
 
