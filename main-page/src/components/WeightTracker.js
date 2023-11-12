@@ -1,11 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Chart from 'chart.js/auto';
+import { Link } from 'react-router-dom'; // Assuming you are using React Router
+import { useNavigate } from 'react-router-dom';
 
 const WeightTracker = () => {
   const [weightData, setWeightData] = useState([]);
   const [weight, setWeight] = useState('');
   const [date, setDate] = useState('');
+  const [showStrength, setShowStrength] = useState(false);
+  const navigate = useNavigate();
   const chartRef = useRef(null);
+
+  const showStrengthLevel = () => {
+    setShowStrength(true);
+    navigate('/strength-level'); // Navigate to the "/weight-tracker" route
+  }
 
   const trackWeight = () => {
     if (!weight || isNaN(weight)) {
@@ -99,6 +108,9 @@ const WeightTracker = () => {
         <button type="button" onClick={trackWeight}>
           Track Weight
         </button>
+        <Link to="/strength-level">
+        <button onClick={showStrengthLevel}>Go to Strength Tracker</button>
+      </Link>
       </form>
       <h2>Weight History</h2>
       <ul>
@@ -109,6 +121,7 @@ const WeightTracker = () => {
         ))}
       </ul>
       <canvas id={generateCanvasId()} width="300" height="50" ref={chartRef}></canvas>
+      
     </div>
   );
 };

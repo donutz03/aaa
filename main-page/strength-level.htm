@@ -1,155 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strength Tracker</title>
-    <!-- Include Chart.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Strength Tracker</title>
+        <!-- Include Chart.js library -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
 
-<body>
+    <body>
 
-    <h1>Strength Tracker</h1>
+        <h1>Strength Tracker</h1>
 
-    <form id="strengthForm">
-        <label for="exercise">Enter your exercise:</label>
-        <input type="text" id="exercise" required>
-        <label for="weight">Enter the weight of the bar/bodyweight (kg):</label>
-        <input type="number" id="weight" required>
-        <label for="reps">Enter the number of reps:</label>
-        <input type="number" id="reps" required>
-        <label for="date">Enter the date:</label>
-        <input type="date" id="date" required>
-        <button type="button" onclick="trackStrength()">Track Strength</button>
-    </form>
+        <form id="strengthForm">
+            <label for="exercise">Enter your exercise:</label>
+            <input type="text" id="exercise" required>
+            <label for="weight">Enter the weight of the bar/bodyweight (kg):</label>
+            <input type="number" id="weight" required>
+            <label for="reps">Enter the number of reps:</label>
+            <input type="number" id="reps" required>
+            <label for="date">Enter the date:</label>
+            <input type="date" id="date" required>
+            <button type="button" onclick="trackStrength()">Track Strength</button>
+        </form>
 
-    <h2>Strength History</h2>
-    <ul id="strengthHistory"></ul>
+        <h2>Strength History</h2>
+        <ul id="strengthHistory"></ul>
 
-    <canvas id="strengthChart" width="300" height="50"></canvas>
+        <canvas id="strengthChart" width="300" height="50"></canvas>
 
-    <script>
-        var exerciseData = {};
-        var myChart;
-        var exerciseColors = {};
+        <script>
+            var exerciseData = {};
+            var myChart;
+            var exerciseColors = {};
 
-        function trackStrength() {
-            // Get user input
-            var exerciseName = document.getElementById('exercise').value;
-            var weight = parseFloat(document.getElementById('weight').value);
-            var reps = parseInt(document.getElementById('reps').value);
-            var date = new Date(document.getElementById('date').value);
+            function trackStrength() {
+                // Get user input
+                var exerciseName = document.getElementById('exercise').value;
+                var weight = parseFloat(document.getElementById('weight').value);
+                var reps = parseInt(document.getElementById('reps').value);
+                var date = new Date(document.getElementById('date').value);
 
-            // Validate input
-            if (!exerciseName.trim()) {
-                alert('Please enter a valid exercise name.');
-                return;
-            }
-
-            if (isNaN(weight) || isNaN(reps) || weight <= 0 || reps <= 0) {
-                alert('Please enter valid weight and reps.');
-                return;
-            }
-
-            // Add entry to exercise data
-            if (!exerciseData[exerciseName]) {
-                exerciseData[exerciseName] = [];
-            }
-
-            exerciseData[exerciseName].push({ date: date, weight: weight, reps: reps });
-
-            // Create a new list item for the strength history
-            var listItem = document.createElement('li');
-            listItem.textContent = `Exercise: ${exerciseName}, Date: ${date.toDateString()}, Weight: ${weight} kg, Reps: ${reps}`;
-
-            // Append the new item to the strength history list
-            document.getElementById('strengthHistory').appendChild(listItem);
-
-            // Update the chart
-            updateChart();
-            
-            // Clear the form fields
-            document.getElementById('exercise').value = '';
-            document.getElementById('weight').value = '';
-            document.getElementById('reps').value = '';
-            document.getElementById('date').value = '';
-        }
-
-        function updateChart() {
-            var ctx = document.getElementById('strengthChart').getContext('2d');
-
-            // Extract data for chart
-            var allDates = new Set(); // Use a set to store all unique dates
-            var chartData = {}; // Object to store strength data for each exercise
-
-            for (const exercise in exerciseData) {
-                if (exerciseData.hasOwnProperty(exercise)) {
-                    var exerciseEntries = exerciseData[exercise];
-                    chartData[exercise] = {};
-
-                    exerciseEntries.forEach(entry => {
-                        var dateKey = entry.date.toLocaleDateString();
-
-                        // Add the date to the set
-                        allDates.add(dateKey);
-
-                        // Store the strength for each exercise on the corresponding date
-                        chartData[exercise][dateKey] = entry.weight * entry.reps;
-
-                        // If the exercise doesn't have a color assigned, generate one and store it
-                        if (!exerciseColors[exercise]) {
-                            exerciseColors[exercise] = '#' + Math.floor(Math.random()*16777215).toString(16);
-                        }
-                    });
+                // Validate input
+                if (!exerciseName.trim()) {
+                    alert('Please enter a valid exercise name.');
+                    return;
                 }
+
+                if (isNaN(weight) || isNaN(reps) || weight <= 0 || reps <= 0) {
+                    alert('Please enter valid weight and reps.');
+                    return;
+                }
+
+                // Add entry to exercise data
+                if (!exerciseData[exerciseName]) {
+                    exerciseData[exerciseName] = [];
+                }
+
+                exerciseData[exerciseName].push({ date: date, weight: weight, reps: reps });
+
+                // Create a new list item for the strength history
+                var listItem = document.createElement('li');
+                listItem.textContent = `Exercise: ${exerciseName}, Date: ${date.toDateString()}, Weight: ${weight} kg, Reps: ${reps}`;
+
+                // Append the new item to the strength history list
+                document.getElementById('strengthHistory').appendChild(listItem);
+
+                // Update the chart
+                updateChart();
+                
+                // Clear the form fields
+                document.getElementById('exercise').value = '';
+                document.getElementById('weight').value = '';
+                document.getElementById('reps').value = '';
+                document.getElementById('date').value = '';
             }
 
-            // Sort the dates to ensure they are in chronological order
-            var sortedDates = Array.from(allDates).sort((a, b) => new Date(a) - new Date(b));
+            function updateChart() {
+                var ctx = document.getElementById('strengthChart').getContext('2d');
 
-            // Destroy the existing chart to prevent duplication
-            if (myChart) {
-                myChart.destroy();
-            }
+                // Extract data for chart
+                var allDates = new Set(); // Use a set to store all unique dates
+                var chartData = {}; // Object to store strength data for each exercise
 
-            // Create the chart
-            myChart = new Chart(ctx, {
-                type: 'bar', 
-                data: {
-                    labels: sortedDates,
-                    datasets: Object.keys(chartData).map(exercise => ({
-                        label: exercise,
-                        data: sortedDates.map(date => chartData[exercise][date] || null),
-                        backgroundColor: exerciseColors[exercise], // Use the assigned color
-                        borderColor: exerciseColors[exercise], // Use the assigned color
-                        borderWidth: 1,
-                        fill: false,
-                        spanGaps: true // Connect data points with lines even with gaps in the data
-                    }))
-                },
-                options: {
-                    scales: {
-                        x: {
-                            type: 'category',
-                            offset: true,
-                            reverse: false
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Strength (weight x reps)'
-                            },
-                            min: 0
-                        }
+                for (const exercise in exerciseData) {
+                    if (exerciseData.hasOwnProperty(exercise)) {
+                        var exerciseEntries = exerciseData[exercise];
+                        chartData[exercise] = {};
+
+                        exerciseEntries.forEach(entry => {
+                            var dateKey = entry.date.toLocaleDateString();
+
+                            // Add the date to the set
+                            allDates.add(dateKey);
+
+                            // Store the strength for each exercise on the corresponding date
+                            chartData[exercise][dateKey] = entry.weight * entry.reps;
+
+                            // If the exercise doesn't have a color assigned, generate one and store it
+                            if (!exerciseColors[exercise]) {
+                                exerciseColors[exercise] = '#' + Math.floor(Math.random()*16777215).toString(16);
+                            }
+                        });
                     }
                 }
-            });
-        }
-    </script>
 
-</body>
+                // Sort the dates to ensure they are in chronological order
+                var sortedDates = Array.from(allDates).sort((a, b) => new Date(a) - new Date(b));
 
-</html>
+                // Destroy the existing chart to prevent duplication
+                if (myChart) {
+                    myChart.destroy();
+                }
+
+                // Create the chart
+                myChart = new Chart(ctx, {
+                    type: 'bar', 
+                    data: {
+                        labels: sortedDates,
+                        datasets: Object.keys(chartData).map(exercise => ({
+                            label: exercise,
+                            data: sortedDates.map(date => chartData[exercise][date] || null),
+                            backgroundColor: exerciseColors[exercise], // Use the assigned color
+                            borderColor: exerciseColors[exercise], // Use the assigned color
+                            borderWidth: 1,
+                            fill: false,
+                            spanGaps: true // Connect data points with lines even with gaps in the data
+                        }))
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                type: 'category',
+                                offset: true,
+                                reverse: false
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Strength (weight x reps)'
+                                },
+                                min: 0
+                            }
+                        }
+                    }
+                });
+            }
+        </script>
+
+    </body>
+
+    </html>
 

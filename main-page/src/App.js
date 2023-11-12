@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CalorieCalculator from './components/CalorieCalculator';
 import WorkoutPlanner from './components/WorkoutPlanner';
 import WeightTracker from './components/WeightTracker';
+import StrengthLevel from './components/StrengthLevel';
 import './App.css';
  
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/calorie-calculator" element={<CalorieCalculator />} />
         <Route path="/workout-planner" element={<WorkoutPlanner />} />
         <Route path="/weight-tracker" element={<WeightTracker />} />
+        <Route path="strength-level" element={<StrengthLevel />} />
       </Routes>
     </Router>
     // </div>
