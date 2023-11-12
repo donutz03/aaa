@@ -1,5 +1,7 @@
 /* Header */
 
+
+
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
@@ -8,7 +10,7 @@ body {
     /* overflow: auto; */
   }
   
-  h1 {
+  .h1-workout-planner {
     text-align: center;
     margin-top: 50px;
     color: #333; /* Set your desired text color */
@@ -124,4 +126,26 @@ body {
   
   .exercise-details li:last-child {
     border-bottom: none;
+  }
+
+  #addToCalendarBtn {
+    /* Your existing styles for the button */
+    box-shadow: inset 0px 0px 19px -1px #91b8b3;
+    background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    background-color: #768d87;
+    border-radius: 5px;
+    border: 1px solid #566963;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 15px 10px;
+    margin: 10px;
+    text-decoration: none;
+    text-shadow: -1px 14px 39px #2b665e;
+    /* Additional styles to center the button */
+    bottom: 20px;
+    transform: translateX(340%);
   }

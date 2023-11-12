@@ -33,9 +33,29 @@ const WorkoutPlanner = () => {
     }
   };
 
+  function generateGoogleCalendarEventURL() {
+    // Retrieve workout details from #apiResult
+    var workoutDetails = apiResult.map((exercise, index) => (
+      `<strong>Exercise ${index + 1}:</strong> ${exercise.name}<br>`
+    )).join('');
+
+    var event = {
+      title: 'Workout Time',
+      location: 'Somewhere',
+      details: workoutDetails,
+    };
+
+    var calendarEventURL = 'https://www.google.com/calendar/render?action=TEMPLATE';
+    calendarEventURL += '&text=' + encodeURIComponent(event.title);
+    calendarEventURL += '&location=' + encodeURIComponent(event.location);
+    calendarEventURL += '&details=' + encodeURIComponent(event.details);
+
+    return calendarEventURL;
+  }
+
   return (
-    <div>
-      <h1>Workout Planner</h1>
+    <div className='div-workout-planner'>
+      <h1 className="h1-workout-planner">Workout Planner</h1>
 
       <form id="exerciseForm">
         <label htmlFor="type">Type:</label>
@@ -117,7 +137,12 @@ const WorkoutPlanner = () => {
             </li>
           ))}
         </ul>
+        
       </div>
+      <button id="addToCalendarBtn" style={{ display: apiResult.length > 0 ? 'block' : 'none' }} onClick={() => window.open(generateGoogleCalendarEventURL())}>
+        Add to Google Calendar
+      </button>
+      
     </div>
   );
 };
