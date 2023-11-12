@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './WorkoutPlanner.css';
 
 const WorkoutPlanner = () => {
   const [type, setType] = useState('');
@@ -88,15 +89,15 @@ const WorkoutPlanner = () => {
         </button>
       </form>
 
-      <div id="resultSection">
-        <h2>Today's workout:</h2>
-        <ul>
+      <div id="resultSection" className="result-section">
+        {/* <h2>Today's workout:</h2> */}
+        <ul id="exercise-list" className="exercise-list">
           {apiResult.map((exercise, index) => (
-            <li key={index}>
+            <li className="exercise-item" key={index}>
               <h2>
                 <strong>Exercise:</strong> {exercise.name}
               </h2>
-              <ul>
+              <ul className="exercise-details">
                 <li>
                   <strong>Type:</strong> {exercise.type}
                 </li>
