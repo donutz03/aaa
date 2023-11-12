@@ -5,10 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import CalorieCalculator from './CalorieCalculator';
 import './ImageComponent.css';
 
+
 const ImageComponent = ({ src, altText, currentImageIndex }) => {
   const [showCalculator, setShowCalculator] = useState(false);
   const [showWorkout, setShowWorkout] = useState(false); 
   const [showWeight, setShowWeight] = useState(false);
+  const [showAIPoweredWorkout, setAIPoweredWorkout] = useState(false);
   const navigate = useNavigate();
 
   const showCalorieCalculator = () => {
@@ -24,6 +26,11 @@ const ImageComponent = ({ src, altText, currentImageIndex }) => {
   const showWeightTracker = () => {
     setShowWeight(true);
     navigate('/weight-tracker'); // Navigate to the "/weight-tracker" route
+  }
+
+  const showAIWorkout = () => {
+    setAIPoweredWorkout(true);
+    navigate('/ai-powered-workout-planner'); 
   }
 
   const showButton = () => {
@@ -63,7 +70,7 @@ const ImageComponent = ({ src, altText, currentImageIndex }) => {
             className="centered-image"
           />
           {showButton()}
-        </>
+          </>
       )}
     </div>
   );

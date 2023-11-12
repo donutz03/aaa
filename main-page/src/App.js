@@ -6,6 +6,7 @@ import WorkoutPlanner from './components/WorkoutPlanner';
 import WeightTracker from './components/WeightTracker';
 import StrengthLevel from './components/StrengthLevel';
 import './App.css';
+import AIPoweredWorkoutPlanner from './components/AIPoweredWorkoutPlanner';
  
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/workout-planner" element={<WorkoutPlanner />} />
         <Route path="/weight-tracker" element={<WeightTracker />} />
         <Route path="strength-level" element={<StrengthLevel />} />
+        <Route path="ai-powered-workout-planner" element={<AIPoweredWorkoutPlanner />} />
       </Routes>
     </Router>
     // </div>
