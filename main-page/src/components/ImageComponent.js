@@ -10,7 +10,7 @@ const ImageComponent = ({ src, altText, currentImageIndex }) => {
   const [showCalculator, setShowCalculator] = useState(false);
   const [showWorkout, setShowWorkout] = useState(false); 
   const [showWeight, setShowWeight] = useState(false);
-  const [showAIPoweredWorkout, setAIPoweredWorkout] = useState(false);
+
   const navigate = useNavigate();
 
   const showCalorieCalculator = () => {
@@ -28,10 +28,7 @@ const ImageComponent = ({ src, altText, currentImageIndex }) => {
     navigate('/weight-tracker'); // Navigate to the "/weight-tracker" route
   }
 
-  const showAIWorkout = () => {
-    setAIPoweredWorkout(true);
-    navigate('/ai-powered-workout-planner'); 
-  }
+  
 
   const showButton = () => {
     switch (currentImageIndex) {

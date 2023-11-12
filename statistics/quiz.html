@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>quiz_workout</title>
+    <meta name="author" content="Goidan Matei-Constantin">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/forum.css" type="text/css">
+</head>
+
+<body class="BodyReport">
+    <header>
+        <p class="MateiReportTitle">Report</p>
+    </header>
+
+  <div class="Mateileaderboard">
+    <div class="container_Matei">
+      <p>Height:</p>
+      <p id="userHeight">173 cm</p>
+      <button id="btheight" class="edit-button" onclick="height()">Edit</button>
+    </div>
+
+    <br>
+
+    <div class="container_Matei">
+       <p>Weight:</p>
+       <p id="userWeight">80 kg</p>
+       <button id="btweight" class="edit-button" onclick="weight()">Edit</button>
+    </div>
+
+    <br>
+
+    <div class="container_Matei2">
+            <p>Steps:</p>
+            <p id="userSteps">100</p>
+           <button id="stepsInput" class="edit-button" onclick="step()">Edit</button>
+    </div>
+
+    <br>
+
+    <div class="container_Matei2">
+            <p>Water:</p>
+            <p id="userWater">25 L</p>
+            <button id="waterInput" class="edit-button" onclick="water()">Edit</button>
+    </div>
+
+    <button id="submitButton" class="submit-btn-Matei" onclick="saveToJson()">
+      Submit
+    </button>
+
+  </div>
+
+    <script type="text/javascript" src="../js/forum.js"></script>
+</body>
+
+</html>

@@ -1,10 +1,21 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Chart from 'chart.js/auto';
+import { useNavigate } from 'react-router-dom';
 
 const StrengthLevel = () => {
   const [exerciseData, setExerciseData] = useState({});
   const [exerciseColors, setExerciseColors] = useState({});
+  
+  const [showAIPoweredWorkout, setAIPoweredWorkout] = useState(false);
+  const navigate = useNavigate();
   const chartRef = useRef(null);
+
+
+
+  const showAIWorkout = () => {
+    setAIPoweredWorkout(true);
+    navigate('/ai-powered-workout-planner'); 
+  }
 
   const trackStrength = () => {
     const exerciseName = document.getElementById('exercise').value;
@@ -140,6 +151,9 @@ const StrengthLevel = () => {
       <ul id="strengthHistory"></ul>
 
       <canvas id="strengthChart" width="300" height="50"></canvas>
+      <button type="button" onClick={showAIWorkout}>
+          Get your AI Powered Workout
+        </button>
     </div>
   );
 };
