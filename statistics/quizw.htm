@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>quiz_workout</title>
+    <meta name="author" content="Goidan Matei-Constantin">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/forum.css" type="text/css">
+</head>
+
+<body class="BodyReport">
+    <header>
+        <p class="MateiReportTitle">Report</p>
+    </header>
+
+    <div class="Mateileaderboard">
+        <div class="container_Matei">
+            <p>Height:</p>
+            <p id="userHeight">173 cm</p>
+            <button id="btheight" class="edit-button" onclick="height()">Edit</button>
+        </div>
+
+        <br>
+
+        <div class="container_Matei">
+            <p>Weight:</p>
+            <p id="userWeight">80 kg</p>
+            <button id="btweight" class="edit-button" onclick="weight()">Edit</button>
+        </div>
+
+        <br>
+
+        <div class="container_Matei2">
+            <p>Steps:</p>
+            <p id="userSteps">100</p>
+            <button id="stepsInput" class="edit-button" onclick="step()">Edit</button>
+        </div>
+
+        <br>
+
+        <div class="container_Matei2">
+            <p>Water:</p>
+            <p id="userWater">25 L</p>
+            <button id="waterInput" class="edit-button" onclick="water()">Edit</button>
+        </div>
+
+        <button id="submitButton" class="submit-btn-Matei" onclick="saveToJson()">
+            Submit
+        </button>
+
+    </div>
+
+    <script type="text/javascript" src="../js/forum.js"></script>
+
+    <script>
+        // Open or create a database named 'UserDataDB' with version 1
+        var request = indexedDB.open('UserDataDB', 1);
+        var db;
+
+        request.onupgradeneeded = function (event) {
+            db = event.target.result;
+            // Create an object store named 'userData' with auto-increment key
+            db.createObjectStore('userData', { autoIncrement: true });
+        };
+
+        request.onsuccess = function (event) {
+            db = event.target.result;
+            // Load data from IndexedDB when the page loads
+            loadFromIndexedDB();
+        };
+
+        function saveToJson() {
+            // Get user data
+            var height = document.getElementById('userHeight').textContent;
+            var weight = document.getElementById('userWeight').textContent;
+            var steps = document.getElementById('userSteps').textContent;
+            var water = document.getElementById('userWater').textContent;
+
+            // Create an object to store in the database
+            var userData = {
+                height: height,
+                weight: weight,
+                steps: steps,
+                water: water
+            };
+
+            // Store the userData in the 'userData' object store
+            var transaction = db.transaction(['userData'], 'readwrite');
+            var objectStore = transaction.objectStore('userData');
+            objectStore.add(userData);
+
+            // Display a message or perform any additional actions if needed
+            console.log('User data saved to IndexedDB');
+        }
+
+        function loadFromIndexedDB() {
+            // Retrieve the most recent userData from the 'userData' object store
+            var transaction = db.transaction(['userData'], 'readonly');
+            var objectStore = transaction.objectStore('userData');
+            var getRequest = objectStore.openCursor(null, 'prev');
+
+            getRequest.onsuccess = function (event) {
+                var cursor = event.target.result;
+                if (cursor) {
+                    // Display the userData on the page
+                    document.getElementById('userHeight').textContent = cursor.value.height;
+                    document.getElementById('userWeight').textContent = cursor.value.weight;
+                    document.getElementById('userSteps').textContent = cursor.value.steps;
+                    document.getElementById('userWater').textContent = cursor.value.water;
+                }
+            };
+        }
+    </script>
+
+</body>
+
+</html>
