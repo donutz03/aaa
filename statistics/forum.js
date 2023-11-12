@@ -1,5 +1,7 @@
 // forum.js
 
+let dataArray = [];
+
 function height() {
     // Get the user input for the new height
     var userInput = prompt("Enter new height:");
@@ -89,31 +91,36 @@ async function saveToJson() {
         userWater: document.getElementById("userWater").innerText,
     };
 
+    dataArray.push(userData);
+
+    console.log("Data pushed to dataArray:", dataArray);
+
+    const jsonData = JSON.stringify(dataArray);
+
+    alert("Data saved successfully!");
+
+    console.log(dataArray);
+
     // Convert data to JSON format
-    const jsonData = JSON.stringify(userData, null, 2);
+    saveDataToLocal();
 
-    async function saveToJson() {
-        const userData = {
-            userHeight: document.getElementById("userHeight").innerText,
-            userWeight: document.getElementById("userWeight").innerText,
-            userSteps: document.getElementById("userSteps").innerText,
-            userWater: document.getElementById("userWater").innerText,
-        };
+    try {
+        // Make a POST request to your server endpoint
+        const response = await fetch('http://localhost:3000/saveData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: jsonData,
+        });
 
-        try {
-            // Send data to the server
-            const response = await fetch('http://localhost:3000/saveData', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData),
-            });
+        const result = await response.text();
+        console.log(result);
 
-            const result = await response.text();
-            console.log(result);
-        } catch (err) {
-            console.error('Error saving data:', err);
-        }
+        // Optional: Clear the form or perform any additional actions after successful submission
+        clearForm();
+    } catch (err) {
+        console.error('Error saving data:', err);
     }
+    
 }

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Exercise Tracker</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Add your custom styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #statistics {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+    <script type="text/javascript"></script>
+</head>
+
+<body onload="displayStatisticsOnLoad()">
+    <h1>Exercise Tracker</h1>
+
+    <form id="exerciseForm">
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" required>
+
+        <label for="steps">Steps:</label>
+        <input type="number" id="steps" name="steps" required>
+
+        <label for="water">Glasses of Water:</label>
+        <input type="number" id="water" name="water" required>
+
+        <button type="button" onclick="saveExerciseData()">Submit</button>
+    </form>
+
+    <div id="statistics">
+        <h2>Statistics</h2>
+        <p id="averageWeight">Average Weight: N/A</p>
+        <p id="averageSteps">Average Steps: N/A</p>
+        <p id="averageWater">Average Glasses of Water: N/A</p>
+    </div>
+
+    <script>
+        let exerciseDataArray = loadExerciseData();
+
+        function saveExerciseData() {
+            const weightInput = document.getElementById('weight');
+            const stepsInput = document.getElementById('steps');
+            const waterInput = document.getElementById('water');
+
+            const weight = weightInput.value;
+            const steps = stepsInput.value;
+            const water = waterInput.value;
+
+            if (weight && steps && water) {
+                const exerciseData = {
+                    weight: parseFloat(weight),
+                    steps: parseInt(steps),
+                    water: parseInt(water),
+                };
+
+                exerciseDataArray.push(exerciseData);
+
+                // Save to localStorage
+                saveToLocalStorage(exerciseDataArray);
+
+                // Clear the form fields
+                weightInput.value = '';
+                stepsInput.value = '';
+                waterInput.value = '';
+
+                // Display statistics
+                displayStatistics();
+
+                console.log("Data saved in array:", exerciseDataArray);
+            } else {
+                alert("Please fill in all fields.");
+            }
+        }
+
+        function displayStatisticsOnLoad() {
+            // Display statistics on page load
+            displayStatistics();
+        }
+
+        function displayStatistics() {
+            const averageWeight = calculateAverage('weight');
+            const averageSteps = calculateAverage('steps');
+            const averageWater = calculateAverage('water');
+
+            document.getElementById('averageWeight').innerText = `Average Weight: ${averageWeight.toFixed(2)} kg`;
+            document.getElementById('averageSteps').innerText = `Average Steps: ${averageSteps.toFixed(0)}`;
+            document.getElementById('averageWater').innerText = `Average Glasses of Water: ${averageWater.toFixed(0)}`;
+        }
+
+        function calculateAverage(property) {
+            const total = exerciseDataArray.reduce((sum, data) => sum + data[property], 0);
+            return exerciseDataArray.length > 0 ? total / exerciseDataArray.length : 0;
+        }
+
+        function saveToLocalStorage(data) {
+            localStorage.setItem('exerciseData', JSON.stringify(data));
+        }
+
+        function loadExerciseData() {
+            const storedData = localStorage.getItem('exerciseData');
+            return storedData ? JSON.parse(storedData) : [];
+        }
+    </script>
+</body>
+
+</html>
