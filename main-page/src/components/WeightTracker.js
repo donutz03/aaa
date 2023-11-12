@@ -8,12 +8,18 @@ const WeightTracker = () => {
   const [weight, setWeight] = useState('');
   const [date, setDate] = useState('');
   const [showStrength, setShowStrength] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const navigate = useNavigate();
   const chartRef = useRef(null);
 
   const showStrengthLevel = () => {
     setShowStrength(true);
     navigate('/strength-level'); // Navigate to the "/weight-tracker" route
+  }
+
+  const showUserProfile = () => {
+    setShowProfile(true);
+    navigate('/profile'); // Navigate to the "/weight-tracker" route
   }
 
   const trackWeight = () => {
@@ -110,6 +116,9 @@ const WeightTracker = () => {
         </button>
         <Link to="/strength-level">
         <button onClick={showStrengthLevel}>Go to Strength Tracker</button>
+      </Link>
+      <Link to="/profile">
+        <button onClick={showUserProfile}>Go to (your) User Profile</button>
       </Link>
       </form>
       <h2>Weight History</h2>

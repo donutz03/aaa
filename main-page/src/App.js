@@ -7,6 +7,7 @@ import WeightTracker from './components/WeightTracker';
 import StrengthLevel from './components/StrengthLevel';
 import './App.css';
 import AIPoweredWorkoutPlanner from './components/AIPoweredWorkoutPlanner';
+import ProfileComponent from './components/ProfileComponent';
  
 
 function App() {
@@ -24,8 +25,9 @@ function App() {
         <Route path="/calorie-calculator" element={<CalorieCalculator />} />
         <Route path="/workout-planner" element={<WorkoutPlanner />} />
         <Route path="/weight-tracker" element={<WeightTracker />} />
-        <Route path="strength-level" element={<StrengthLevel />} />
-        <Route path="ai-powered-workout-planner" element={<AIPoweredWorkoutPlanner />} />
+        <Route path="/strength-level" element={<StrengthLevel />} />
+        <Route path="/ai-powered-workout-planner" element={<AIPoweredWorkoutPlanner />} />
+        <Route path="/profile" element={<ProfileComponent />} />
       </Routes>
     </Router>
     // </div>
