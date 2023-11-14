@@ -15,7 +15,7 @@ const WorkoutPlanner = () => {
       difficulty: difficulty,
     };
 
-    const apiKey = 'Ygnfr5fgdWJvnXyvDGgw0A==TpykOtkdts2go1A9'; 
+    const apiKey = 'add secret key here'; 
 
     try {
       const response = await axios.get('https://api.api-ninjas.com/v1/exercises', {

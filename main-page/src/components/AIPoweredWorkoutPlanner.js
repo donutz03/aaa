@@ -18,7 +18,7 @@ const AIPoweredWorkoutPlanner = () => {
       goals,
     };
 
-    const apiKey = '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';
+    const apiKey = 'add secret key here';
 
     try {
       const response = await axios.post(
